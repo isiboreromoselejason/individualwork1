@@ -45,5 +45,47 @@
                     <button v-on:click="page = 'cart'" >
                         Shopping Cart
                     </button>
+                </div>
+            </div>
+            <hr>
+            <div class="lessons-container">
+                <div v-for="lesson in lessons" :key="lesson.subject" class="cart-card">
+                    <div class="inner">
+                        <div class="text-section">
+                            <span>
+                                <b>Subject:</b>
+                                <span>
+                                    {{ lesson.subject }}
+                                </span>
+                            </span>
+                            <span>
+                                <b>Location:</b>
+                                <span>
+                                    {{ lesson.location }}
+                                </span>
+                            </span>
+                            <span>
+                                <b>Price:</b>
+                                <span>
+                                    {{ lesson.price }}
+                                </span>
+                            </span>
+                            <span>
+                                <b>Spaces:</b>
+                                <span>
+                                    {{ lesson.spaces }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="image-section">
+                            <img :src="lesson.image">
+                        </div>
+                    </div>
+                    <button v-show="lesson.spaces > 0" v-on:click="addToCart(lesson)">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
 </body>
 </html>

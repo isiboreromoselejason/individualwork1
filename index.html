@@ -155,5 +155,77 @@
             </div>
         </div>
     </div>
+    <script type="module">
+        import { lessons } from './lessons.js';
+        let app = new Vue({
+            el: '#app',
+            data: {
+                page: 'lessons',
+                lessons: lessons,
+                sortType: '',
+                sortOrder: 'asc',
+                cart: [],
+                phone: '',
+                name: ''
+            },
+            watch: {
+                sortType: {
+                    immediate: true,
+                    handler(newVal, oldVal) {
+                        switch (newVal) {
+                            case 'subject': 
+                                this.lessons.sort((a, b) => {
+                                    const subjectA = a.subject.toUpperCase()
+                                    const subjectB = b.subject.toUpperCase()
+                                    return (subjectA < subjectB ? -1 : 1)
+                                })
+                                break
+                            case 'location': 
+                                this.lessons.sort((a, b) => {
+                                    const locationA = a.location.toUpperCase()
+                                    const locationB = b.location.toUpperCase()
+                                    return (locationA < locationB ? -1 : 1)
+                                })
+                                break
+                            case 'price': 
+                                this.lessons.sort((a, b) => {
+                                    const priceA = Number (a.price.substr(1,))
+                                    const priceB = Number (b.price.substr(1,))
+                                    return (priceA < priceB ? -1 : 1)
+                                })
+                                break
+                            case 'avail': 
+                                this.lessons.sort((a, b) => {
+                                    const spacesA = a.spaces
+                                    const spacesB = b.spaces
+                                    return (spacesA < spacesB ? -1 : 1)
+                                })
+                                break
+                        }
+                        this.sortOrder = 'asc'
+                    }
+                },
+                sortOrder: {
+                    immediate: true,
+                    handler(newVal, oldVal) {
+                        this.lessons.reverse()
+                    }
+                }
+            },
+            methods: {
+                addToCart (lesson) {
+                    if (lesson.spaces > 0) {
+                        lesson.spaces--
+                        this.cart.push(lesson)
+                    }
+                },
+                submitOrder () {
+                    window.alert('Your order has been submitted')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
 </body>
 </html>

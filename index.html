@@ -87,5 +87,73 @@
                 </div>
             </div>
         </div>
+        <div v-if="page === 'cart'" class="container">
+            <div class="header">
+                <div class="title">
+                    <button v-on:click="page = 'lessons'">
+                        Go Back
+                    </button>
+                    Shopping Cart
+                </div>
+            </div>
+            <hr>
+            <div class="lessons-container">
+                <div v-for="(lesson, count) in cart" :key="count" class="cart-card">
+                    <div class="inner">
+                        <div class="text-section">
+                            <span>
+                                <b>Subject:</b>
+                                <span>
+                                    {{ lesson.subject }}
+                                </span>
+                            </span>
+                            <span>
+                                <b>Location:</b>
+                                <span>
+                                    {{ lesson.location }}
+                                </span>
+                            </span>
+                            <span>
+                                <b>Price:</b>
+                                <span>
+                                    {{ lesson.price }}
+                                </span>
+                            </span>
+                            <span>
+                                <b>Spaces:</b>
+                                <span>
+                                    {{ lesson.spaces }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="image-section">
+                            <img :src="lesson.image">
+                        </div>
+                    </div>
+                    <button v-show="lesson.spaces > 0" v-on:click="addToCart(lesson)">
+                        Remove
+                    </button>
+                </div>
+            </div>
+            <div class="checkout-container">
+                <div class="title">
+                    Checkout
+                </div>
+                <div class="form-input">
+                    <span>
+                        Name:
+                    </span>
+                    <input v-model="name" type="text">
+                    <span>
+                        Phone:
+                    </span>
+                    <input v-model="phone" type="number">
+                    <button @click="submitOrder" v-show="name.length > 0 && phone.length > 0">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -10,6 +10,40 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
-    
+    <div id="app">
+        <div v-if="page === 'lessons'" class="container">
+            <div class="header">
+                <div class="title">
+                    All Lessons
+                </div>
+                <div class="sort">
+                    <select v-model="sortType">
+                        <option value="">
+                            Sort Lessons
+                        </option>
+                        <option value="subject">
+                            Subject
+                        </option>
+                        <option value="location">
+                            Location
+                        </option>
+                        <option value="price">
+                            Price
+                        </option>
+                        <option value="avail">
+                            Availability
+                        </option>
+                    </select>
+                    <select v-model="sortOrder">
+                        <option value="asc">
+                            Ascending
+                        </option>
+                        <option value="desc">
+                            Descending
+                        </option>
+                    </select>
+                    <button v-on:click="page = 'cart'" >
+                        Shopping Cart
+                    </button>
 </body>
 </html>

@@ -26,5 +26,13 @@ export const lessons = [
         price: '£90',
         spaces: 5,
         image: 'https://buid.ac.ae/wp-content/uploads/2020/09/management-accounting-header.jpg'
+    },
+    {
+        subject: 'Music',
+        location: 'Bristol',
+        price: '£80',
+        spaces: 5,
+        image: 'https://buid.ac.ae/wp-content/uploads/2020/09/management-accounting-header.jpg'
     }
+
   ]
